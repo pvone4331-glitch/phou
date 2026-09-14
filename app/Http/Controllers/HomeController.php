@@ -11,4 +11,9 @@ class HomeController extends Controller
         $province = Province::all();
         return view('address',compact('province'));
     }
+
+    public function getDistrict(Request $request){
+        $pr_id = $request->query('pr_id');
+        echo "<option value=''>test data".$pr_id."</option>";
+    }
 }

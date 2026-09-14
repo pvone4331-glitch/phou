@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ແບບຟອມທີ່ຢູ່ - ແຂວງ/ເມືອງ/ບ້ານ</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.slim.js" integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         *{ font-family: 'Noto Sans Lao', sans-serif; }
@@ -80,7 +80,7 @@
                         ເມືອງ <span class="text-red-500 ml-1">*</span>
                     </label>
                     <div class="select-wrapper">
-                        <select id="district" required disabled
+                        <select id="district" required
                             class="w-full px-4 py-3 pr-10 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all appearance-none cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed">
                             <option value="">-- ກະລຸນາເລືອກເມືອງ --</option>
                         </select>
@@ -147,6 +147,23 @@
 
 <script>
     $(document).ready(function(){
-        alert("hello wordl");
+        //alert("hello wordl");
+        $("#province").change(function(){
+            let pr_id = $(this).val();
+            //alert(pr_id);
+            $.ajax({
+                url:'/get-district',
+                type:'GET',
+                dataType:'text',
+                data:{pr_id:pr_id},
+                success:function(data){
+                    $("#district").html(data);
+                },
+                error:function(xhr){
+                    console.log(xhr.respone);
+                    
+                }
+            });
+        });
     });
 </script>

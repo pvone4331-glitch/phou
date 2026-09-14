@@ -8,3 +8,5 @@ use App\Http\Controllers\HomeController;
 
 
 Route::get('/',[HomeController::class,'index'])->name('home');
+
+Route::get('/get-district',[HomeController::class,'getDistrict']);
